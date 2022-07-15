@@ -1,0 +1,5 @@
+[gd_scene format=2]
+
+[node name="Word" type="Node"]
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
