@@ -1,8 +1,8 @@
 extends KinematicBody2D
 
-export (int) var speed = 600
-export (int) var jump_speed = -700
-export (int) var gravity = 3500
+var speed = 600
+var jump_speed = -700
+var gravity = 3500
 
 var arrow = preload("res://Characters/Arrow.tscn")
 
@@ -17,9 +17,12 @@ var line = Line2D.new()
 var bow_frame = 0
 
 var arrow_is_super = false
+var force_multiplier = 0.75
 
 var is_aim_locked = false
 var has_let_go = false
+
+var health = 100
 
 var aiming_vector
 var point_to_aim_at
@@ -43,7 +46,7 @@ func draw_bow():
 			check_distance = false
 			draw_distance = 0
 			line.hide()
-			$"../DistanceHolder".hide()
+			$"../DistanceContainer".hide()
 			has_let_go = true
 		if check_distance == true and Input.is_action_pressed("drawBow"):
 			line.show()
@@ -58,24 +61,26 @@ func draw_bow():
 
 			bow_frame = round(range_lerp(draw_distance, 0, 500, 0, 3))
 			$Bow.frame = bow_frame
-			$"../DistanceHolder/Distance".text = str(draw_distance)
-			$"../DistanceHolder".show()
+			$"../DistanceContainer/Distance".text = str(draw_distance)
+			$"../DistanceContainer".show()
 
 func shoot_arrow():
 	if arrow_is_super == false:
 		var arrow_instance = arrow.instance()
 		arrow_instance.global_position = $"Bow/Position2D".global_position
 		arrow_instance.rotation = $Bow.rotation
+		arrow_instance.name = "P1Arrow"
 		get_parent().add_child(arrow_instance)
-		arrow_instance.apply_impulse(Vector2(), aiming_vector)
+		arrow_instance.apply_impulse(Vector2(), aiming_vector * force_multiplier)
 		
 
-func get_damage():
-	# Add things here
-	pass
+func get_damage(damage_amount):
+	health -= damage_amount
+
+func _process(delta):
+	$"../Player1HPBar/TextureProgress".value = health
 
 func _physics_process(delta):
 	get_input()
 	draw_bow()
-	get_damage()
 #	print("P1 - ", has_let_go)

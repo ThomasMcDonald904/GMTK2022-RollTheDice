@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://into_the_void/Into The Void Italic.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Scripts/BaseWorld.gd" type="Script" id=2]
@@ -6,9 +6,10 @@
 [ext_resource path="res://into_the_void/Into The Void.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://Assets/HpBarOver.png" type="Texture" id=5]
 [ext_resource path="res://Assets/HpBarUnder.png" type="Texture" id=6]
+[ext_resource path="res://Assets/goodbackground.png" type="Texture" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 1024, 97 )
+extents = Vector2( 1024, 120 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 21
@@ -19,38 +20,114 @@ font_data = ExtResource( 1 )
 size = 93
 font_data = ExtResource( 4 )
 
+[sub_resource type="TileSet" id=4]
+0/name = "goodbackground.png 0"
+0/texture = ExtResource( 7 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 64, 64 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+1/name = "goodbackground.png 1"
+1/texture = ExtResource( 7 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 64, 0, 64, 64 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape_one_way = false
+1/shape_one_way_margin = 0.0
+1/shapes = [  ]
+1/z_index = 0
+2/name = "goodbackground.png 2"
+2/texture = ExtResource( 7 )
+2/tex_offset = Vector2( 0, 0 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 128, 0, 64, 64 )
+2/tile_mode = 0
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape_one_way = false
+2/shape_one_way_margin = 0.0
+2/shapes = [  ]
+2/z_index = 0
+3/name = "goodbackground.png 3"
+3/texture = ExtResource( 7 )
+3/tex_offset = Vector2( 0, 0 )
+3/modulate = Color( 1, 1, 1, 1 )
+3/region = Rect2( 192, 0, 64, 64 )
+3/tile_mode = 0
+3/occluder_offset = Vector2( 0, 0 )
+3/navigation_offset = Vector2( 0, 0 )
+3/shape_offset = Vector2( 0, 0 )
+3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+3/shape_one_way = false
+3/shape_one_way_margin = 0.0
+3/shapes = [  ]
+3/z_index = 0
+4/name = "goodbackground.png 4"
+4/texture = ExtResource( 7 )
+4/tex_offset = Vector2( 0, 0 )
+4/modulate = Color( 1, 1, 1, 1 )
+4/region = Rect2( 256, 0, 64, 64 )
+4/tile_mode = 0
+4/occluder_offset = Vector2( 0, 0 )
+4/navigation_offset = Vector2( 0, 0 )
+4/shape_offset = Vector2( 0, 0 )
+4/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+4/shape_one_way = false
+4/shape_one_way_margin = 0.0
+4/shapes = [  ]
+4/z_index = 0
+5/name = "goodbackground.png 5"
+5/texture = ExtResource( 7 )
+5/tex_offset = Vector2( 0, 0 )
+5/modulate = Color( 1, 1, 1, 1 )
+5/region = Rect2( 320, 0, 64, 64 )
+5/tile_mode = 0
+5/occluder_offset = Vector2( 0, 0 )
+5/navigation_offset = Vector2( 0, 0 )
+5/shape_offset = Vector2( 0, 0 )
+5/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+5/shape_one_way = false
+5/shape_one_way_margin = 0.0
+5/shapes = [  ]
+5/z_index = 0
+
 [node name="World" type="Node"]
 script = ExtResource( 2 )
 
 [node name="Floor" type="StaticBody2D" parent="."]
 
-[node name="ColorRect" type="ColorRect" parent="Floor"]
-anchor_top = 1.0
-anchor_bottom = 1.0
-margin_top = 1005.0
-margin_right = 2048.0
-margin_bottom = 1200.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
-position = Vector2( 1024, 1103 )
+position = Vector2( 1024, 1080 )
 shape = SubResource( 1 )
 one_way_collision_margin = 0.0
 
 [node name="PlayerSpawn" type="Position2D" parent="."]
-position = Vector2( 51, 952 )
+position = Vector2( 49, 906 )
 
 [node name="PlayerSpawn2" type="Position2D" parent="."]
-position = Vector2( 1992, 948 )
+position = Vector2( 1990, 902 )
 
-[node name="DistanceHolder" type="Node2D" parent="."]
+[node name="DistanceContainer" type="Node2D" parent="."]
 visible = false
 z_index = 1
 script = ExtResource( 3 )
 
-[node name="Distance" type="Label" parent="DistanceHolder"]
+[node name="Distance" type="Label" parent="DistanceContainer"]
 margin_right = 135.0
 margin_bottom = 31.0
 custom_fonts/font = SubResource( 2 )
@@ -60,6 +137,7 @@ __meta__ = {
 }
 
 [node name="MainText" type="CenterContainer" parent="."]
+visible = false
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -281.5
@@ -81,6 +159,7 @@ __meta__ = {
 [node name="Player1HPBar" type="MarginContainer" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
+rect_scale = Vector2( 3, 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -88,25 +167,52 @@ __meta__ = {
 [node name="TextureProgress" type="TextureProgress" parent="Player1HPBar"]
 margin_right = 128.0
 margin_bottom = 40.0
-rect_scale = Vector2( 3, 3 )
 value = 100.0
 texture_under = ExtResource( 6 )
 texture_progress = ExtResource( 5 )
 
-[node name="Player1HPBar2" type="MarginContainer" parent="."]
+[node name="Player2HPBar" type="MarginContainer" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -128.0
-margin_bottom = 40.0
+margin_left = -381.0
+margin_right = -293.0
+margin_bottom = 32.0
+rect_scale = Vector2( 3, 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureProgress" type="TextureProgress" parent="Player1HPBar2"]
+[node name="TextureProgress" type="TextureProgress" parent="Player2HPBar"]
 margin_right = 128.0
-margin_bottom = 40.0
-rect_scale = Vector2( 3, 3 )
+margin_bottom = 32.0
 rect_pivot_offset = Vector2( 127.667, 0.333328 )
 value = 100.0
 texture_under = ExtResource( 6 )
 texture_progress = ExtResource( 5 )
+
+[node name="FloorTileMap" type="TileMap" parent="."]
+tile_set = SubResource( 4 )
+format = 1
+tile_data = PoolIntArray( 983040, 5, 0, 983041, 5, 0, 983042, 5, 0, 983043, 5, 0, 983044, 5, 0, 983045, 5, 0, 983046, 5, 0, 983047, 5, 0, 983048, 5, 0, 983049, 5, 0, 983050, 5, 0, 983051, 5, 0, 983052, 5, 0, 983053, 5, 0, 983054, 5, 0, 983055, 5, 0, 983056, 5, 0, 983057, 5, 0, 983058, 2, 0, 983059, 5, 0, 983060, 3, 0, 983061, 5, 0, 983062, 5, 0, 983063, 5, 0, 983064, 5, 0, 983065, 5, 0, 983066, 5, 0, 983067, 1, 0, 983068, 5, 0, 983069, 5, 0, 983070, 5, 0, 983071, 5, 0, 1048576, 3, 0, 1048577, 3, 0, 1048578, 0, 0, 1048579, 5, 0, 1048580, 4, 0, 1048581, 5, 0, 1048582, 5, 0, 1048583, 5, 0, 1048584, 2, 0, 1048585, 5, 0, 1048586, 5, 0, 1048587, 5, 0, 1048588, 0, 0, 1048589, 5, 0, 1048590, 0, 0, 1048591, 4, 0, 1048592, 5, 0, 1048593, 1, 0, 1048594, 5, 0, 1048595, 5, 0, 1048596, 0, 0, 1048597, 5, 0, 1048598, 1, 0, 1048599, 5, 0, 1048600, 5, 0, 1048601, 0, 0, 1048602, 5, 0, 1048603, 5, 0, 1048604, 4, 0, 1048605, 5, 0, 1048606, 3, 0, 1048607, 5, 0, 1114112, 5, 0, 1114113, 5, 0, 1114114, 5, 0, 1114115, 5, 0, 1114116, 0, 0, 1114117, 1, 0, 1114118, 5, 0, 1114119, 5, 0, 1114120, 5, 0, 1114121, 5, 0, 1114122, 5, 0, 1114123, 5, 0, 1114124, 5, 0, 1114125, 5, 0, 1114126, 5, 0, 1114127, 5, 0, 1114128, 5, 0, 1114129, 5, 0, 1114130, 5, 0, 1114131, 1, 0, 1114132, 5, 0, 1114133, 5, 0, 1114134, 5, 0, 1114135, 5, 0, 1114136, 5, 0, 1114137, 5, 0, 1114138, 5, 0, 1114139, 1, 0, 1114140, 5, 0, 1114141, 2, 0, 1114142, 5, 0, 1114143, 5, 0, 1179648, 5, 0, 1179649, 0, 0, 1179650, 3, 0, 1179651, 5, 0, 1179652, 5, 0, 1179653, 4, 0, 1179654, 5, 0, 1179655, 5, 0, 1179656, 5, 0, 1179657, 5, 0, 1179658, 5, 0, 1179659, 5, 0, 1179660, 5, 0, 1179661, 0, 0, 1179662, 5, 0, 1179663, 5, 0, 1179664, 0, 0, 1179665, 5, 0, 1179666, 5, 0, 1179667, 5, 0, 1179668, 5, 0, 1179669, 3, 0, 1179670, 5, 0, 1179671, 2, 0, 1179672, 5, 0, 1179673, 5, 0, 1179674, 5, 0, 1179675, 5, 0, 1179676, 5, 0, 1179677, 5, 0, 1179678, 5, 0, 1179679, 3, 0 )
+
+[node name="DicePositionContainer" type="Node" parent="."]
+
+[node name="Position1" type="Position2D" parent="DicePositionContainer"]
+position = Vector2( 674, 20 )
+
+[node name="Position2" type="Position2D" parent="DicePositionContainer"]
+position = Vector2( 802, 20 )
+
+[node name="Position3" type="Position2D" parent="DicePositionContainer"]
+position = Vector2( 930, 20 )
+
+[node name="Position4" type="Position2D" parent="DicePositionContainer"]
+position = Vector2( 1058, 20 )
+
+[node name="Position5" type="Position2D" parent="DicePositionContainer"]
+position = Vector2( 1186, 20 )
+
+[node name="Position6" type="Position2D" parent="DicePositionContainer"]
+position = Vector2( 1314, 20 )
+
+[node name="DiceContainer" type="Node" parent="."]
