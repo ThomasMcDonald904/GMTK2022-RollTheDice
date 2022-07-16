@@ -1,0 +1,112 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://into_the_void/Into The Void Italic.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Scripts/BaseWorld.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/DrawDistanceLabel.gd" type="Script" id=3]
+[ext_resource path="res://into_the_void/Into The Void.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Assets/HpBarOver.png" type="Texture" id=5]
+[ext_resource path="res://Assets/HpBarUnder.png" type="Texture" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 1024, 97 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 21
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 93
+font_data = ExtResource( 4 )
+
+[node name="World" type="Node"]
+script = ExtResource( 2 )
+
+[node name="Floor" type="StaticBody2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Floor"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = 1005.0
+margin_right = 2048.0
+margin_bottom = 1200.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2( 1024, 1103 )
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
+
+[node name="PlayerSpawn" type="Position2D" parent="."]
+position = Vector2( 51, 952 )
+
+[node name="PlayerSpawn2" type="Position2D" parent="."]
+position = Vector2( 1992, 948 )
+
+[node name="DistanceHolder" type="Node2D" parent="."]
+visible = false
+z_index = 1
+script = ExtResource( 3 )
+
+[node name="Distance" type="Label" parent="DistanceHolder"]
+margin_right = 135.0
+margin_bottom = 31.0
+custom_fonts/font = SubResource( 2 )
+text = "Lorem Ipsum"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainText" type="CenterContainer" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -281.5
+margin_right = 281.5
+margin_bottom = 132.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="MainText"]
+margin_right = 563.0
+margin_bottom = 132.0
+custom_fonts/font = SubResource( 3 )
+text = "Player one"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player1HPBar" type="MarginContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureProgress" type="TextureProgress" parent="Player1HPBar"]
+margin_right = 128.0
+margin_bottom = 40.0
+rect_scale = Vector2( 3, 3 )
+value = 100.0
+texture_under = ExtResource( 6 )
+texture_progress = ExtResource( 5 )
+
+[node name="Player1HPBar2" type="MarginContainer" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -128.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureProgress" type="TextureProgress" parent="Player1HPBar2"]
+margin_right = 128.0
+margin_bottom = 40.0
+rect_scale = Vector2( 3, 3 )
+rect_pivot_offset = Vector2( 127.667, 0.333328 )
+value = 100.0
+texture_under = ExtResource( 6 )
+texture_progress = ExtResource( 5 )
