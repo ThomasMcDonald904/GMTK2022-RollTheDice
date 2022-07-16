@@ -15,38 +15,49 @@ var list_of_dice_positions = []
 var attacked = false
 # This is temporary until a player selection is put in place
 func _ready():
+	
 	player1.set_script(player1_script)
 	player2.set_script(player2_script)
 	player1.global_position = $PlayerSpawn.global_position
 	player2.global_position = $PlayerSpawn2.global_position
 	
-	player2.get_node("PlayerAnimator").flip_h = true
-	player2.get_node("CollisionPolygon2D").scale.x = -1
-	player2.get_node("CollisionPolygon2D").position.x *= -1
-	
 	add_child(player1, true)
 	add_child(player2, true)
 	
+	player2.get_node("PlayerAnimator").flip_h = true
+	player2.get_node("CollisionPolygon2D").scale.x = -1
+	player2.get_node("CollisionPolygon2D").position.x *= -1
+
 	#This is played once until gameloop is finished
-	dice_roll()
+	dice_roll(175)
+	yield(get_tree().create_timer(2), "timeout")
+	clearMovingDice(175)
+	dice_roll(175-43.75)
+	
 
 func _process(delta):
 	manage_player_turns()
 
+func clearMovingDice(roll_distance):
+	for dice in $MovingDiceContainer.get_children():
+		var still_dice = dice_preload.instance()
+		still_dice.global_position = dice.get_node("RollingDice").global_position
+		$MovingDiceContainer.remove_child(dice)
+		$DiceContainer.add_child(still_dice)
 
-func dice_roll():
+func dice_roll(roll_distance):
 	for dice_position in $DicePositionContainer.get_children():
 		var dice_instance = dice_preload.instance()
 		dice_instance.global_position = dice_position.global_position
-		$DiceContainer.add_child(dice_instance)
-	for dice in $DiceContainer.get_children():
+		$MovingDiceContainer.add_child(dice_instance)
+	for dice in $MovingDiceContainer.get_children():
 		var animation_player = dice.get_node("AnimationPlayer")
 		var animation = animation_player.get_animation("MoveDice")
 		var track_idx = animation.find_track(".:position")
-		print(dice.position.x)-
-		animation.track_set_key_value(track_idx, 0, Vector2(dice.position.x, -64))
-		animation.track_set_key_value(track_idx, 1, Vector2(dice.position.x, 600))
+		animation.track_set_key_value(track_idx, 0, Vector2(dice.position.x, 0))
+		animation.track_set_key_value(track_idx, 1, Vector2(dice.position.x, roll_distance))
 		animation_player.play("MoveDice")
+
 
 func manage_player_turns():
 	if attacked == false:

@@ -215,4 +215,6 @@ position = Vector2( 1186, 20 )
 [node name="Position6" type="Position2D" parent="DicePositionContainer"]
 position = Vector2( 1314, 20 )
 
+[node name="MovingDiceContainer" type="Node" parent="."]
+
 [node name="DiceContainer" type="Node" parent="."]
