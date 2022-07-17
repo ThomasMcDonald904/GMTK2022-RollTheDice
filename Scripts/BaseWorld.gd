@@ -32,18 +32,31 @@ func _ready():
 	dice_roll(175)
 	yield(get_tree().create_timer(2), "timeout")
 	clearMovingDice(175)
-	dice_roll(175-43.75)
-	
+	shift_starting_positions(43.75 * 4)
+	dice_roll(175)
+	yield(get_tree().create_timer(2), "timeout")
+	clearMovingDice(175)
+	shift_starting_positions(43.75 * 4)
+	dice_roll(175)
+	yield(get_tree().create_timer(2), "timeout")
+	clearMovingDice(175)
+	shift_starting_positions(43.75 * 4)
+	dice_roll(175)
+	clearMovingDice(175)
 
 func _process(delta):
 	manage_player_turns()
+
+func shift_starting_positions(shift_amount):
+	for dice_position in $DicePositionContainer.get_children():
+		dice_position.position.y -= shift_amount
 
 func clearMovingDice(roll_distance):
 	for dice in $MovingDiceContainer.get_children():
 		var still_dice = dice_preload.instance()
 		still_dice.global_position = dice.get_node("RollingDice").global_position
-		$MovingDiceContainer.remove_child(dice)
 		$DiceContainer.add_child(still_dice)
+		$MovingDiceContainer.remove_child(dice)
 
 func dice_roll(roll_distance):
 	for dice_position in $DicePositionContainer.get_children():
