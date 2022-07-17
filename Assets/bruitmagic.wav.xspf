@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<playlist xmlns="http://xspf.org/ns/0/" xmlns:vlc="http://www.videolan.org/vlc/playlist/ns/0/" version="1">
+	<title>Playlist</title>
+	<trackList>
+		<track>
+			<location>file:///home/thomas/Downloads/MUSCChim_Metallophone%20ascendant%20%28ID%200920%29_LS.wav</location>
+			<duration>19458</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>0</vlc:id>
+			</extension>
+		</track>
+		<track>
+			<location>file:///home/thomas/Desktop/GMTK2022-RollTheDice/Assets/brassage.wav</location>
+			<title>brassage de des</title>
+			<creator>Mathys Marcouiller</creator>
+			<album>none</album>
+			<trackNum>1</trackNum>
+			<duration>4713</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>1</vlc:id>
+			</extension>
+		</track>
+		<track>
+			<location>file:///home/thomas/Downloads/SWSH_Whoosh%203%20%28ID%201795%29_LS.wav</location>
+			<duration>913</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>2</vlc:id>
+			</extension>
+		</track>
+		<track>
+			<location>file:///home/thomas/Downloads/TOONTwang_Plante%20cartoon%207%20%28ID%201956%29_LS.wav</location>
+			<duration>2144</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>3</vlc:id>
+			</extension>
+		</track>
+	</trackList>
+	<extension application="http://www.videolan.org/vlc/playlist/0">
+		<vlc:item tid="0"/>
+		<vlc:item tid="1"/>
+		<vlc:item tid="2"/>
+		<vlc:item tid="3"/>
+	</extension>
+</playlist>
