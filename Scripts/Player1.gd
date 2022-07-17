@@ -4,6 +4,8 @@ var speed = 600
 var jump_speed = -700
 var gravity = 3500
 
+var score = 0
+
 var arrow = preload("res://Characters/Arrow.tscn")
 
 var distance_to_last_click = 0
@@ -48,6 +50,7 @@ func draw_bow():
 			line.hide()
 			$"../DistanceContainer".hide()
 			has_let_go = true
+			print(has_let_go)
 		if check_distance == true and Input.is_action_pressed("drawBow"):
 			line.show()
 			draw_distance = round(clamp(get_local_mouse_position().distance_to(last_click), 0, 500))
@@ -65,6 +68,7 @@ func draw_bow():
 			$"../DistanceContainer".show()
 
 func shoot_arrow():
+	yield(get_tree(), "idle_frame")
 	if arrow_is_super == false:
 		var arrow_instance = arrow.instance()
 		arrow_instance.global_position = $"Bow/Position2D".global_position
@@ -72,15 +76,17 @@ func shoot_arrow():
 		arrow_instance.name = "P1Arrow"
 		get_parent().add_child(arrow_instance)
 		arrow_instance.apply_impulse(Vector2(), aiming_vector * force_multiplier)
-		
+
+func increase_score(score_amount):
+	score += score_amount
 
 func get_damage(damage_amount):
 	health -= damage_amount
 
 func _process(delta):
 	$"../Player1HPBar/TextureProgress".value = health
+	$"../Player1Points/HBoxContainer/Label".text = str(score)
 
 func _physics_process(delta):
 	get_input()
 	draw_bow()
-#	print("P1 - ", has_let_go)
