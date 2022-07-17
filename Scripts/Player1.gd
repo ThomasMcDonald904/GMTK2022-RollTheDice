@@ -50,7 +50,6 @@ func draw_bow():
 			line.hide()
 			$"../DistanceContainer".hide()
 			has_let_go = true
-			print(has_let_go)
 		if check_distance == true and Input.is_action_pressed("drawBow"):
 			line.show()
 			draw_distance = round(clamp(get_local_mouse_position().distance_to(last_click), 0, 500))

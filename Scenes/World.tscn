@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://into_the_void/Into The Void Italic.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Scripts/BaseWorld.gd" type="Script" id=2]
@@ -9,6 +9,11 @@
 [ext_resource path="res://Assets/goodbackground.png" type="Texture" id=7]
 [ext_resource path="res://Assets/Audio/Fireball-Magic-Attack-A-www.fesliyanstudios.com.wav" type="AudioStream" id=8]
 [ext_resource path="res://Assets/pokerChips.png" type="Texture" id=9]
+[ext_resource path="res://into_the_void/Into The Void.otf" type="DynamicFontData" id=10]
+[ext_resource path="res://Assets/Buttons/Yes.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Buttons/No.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Buttons/No-pressed.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Buttons/Yes-pressed.png" type="Texture" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 1024, 120 )
@@ -113,6 +118,17 @@ size = 17
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 48
+font_data = ExtResource( 10 )
+
+[sub_resource type="DynamicFontData" id=7]
+font_path = "res://into_the_void/Into The Void.otf"
+
+[sub_resource type="DynamicFont" id=8]
+size = 65
+font_data = SubResource( 7 )
 
 [node name="World" type="Node"]
 script = ExtResource( 2 )
@@ -288,3 +304,102 @@ margin_left = 19.0
 margin_right = 51.0
 margin_bottom = 32.0
 texture = ExtResource( 9 )
+
+[node name="DoYouWantToPlayAgain" type="CenterContainer" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -473.5
+margin_right = 473.5
+margin_bottom = 105.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DoYouWantToPlayAgain"]
+margin_right = 947.0
+margin_bottom = 105.0
+
+[node name="Label" type="Label" parent="DoYouWantToPlayAgain/VBoxContainer"]
+margin_right = 947.0
+margin_bottom = 69.0
+custom_fonts/font = SubResource( 6 )
+text = "Do you want to play another round"
+
+[node name="CenterContainer" type="CenterContainer" parent="DoYouWantToPlayAgain/VBoxContainer"]
+margin_top = 73.0
+margin_right = 947.0
+margin_bottom = 105.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DoYouWantToPlayAgain/VBoxContainer/CenterContainer"]
+margin_left = 343.0
+margin_right = 603.0
+margin_bottom = 32.0
+
+[node name="Yes" type="TextureButton" parent="DoYouWantToPlayAgain/VBoxContainer/CenterContainer/HBoxContainer"]
+margin_right = 128.0
+margin_bottom = 32.0
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 14 )
+
+[node name="No" type="TextureButton" parent="DoYouWantToPlayAgain/VBoxContainer/CenterContainer/HBoxContainer"]
+margin_left = 132.0
+margin_right = 260.0
+margin_bottom = 32.0
+texture_normal = ExtResource( 12 )
+texture_pressed = ExtResource( 13 )
+
+[node name="Player1Win" type="CenterContainer" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -240.0
+margin_right = 240.0
+margin_bottom = 93.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Player1Win"]
+margin_right = 519.0
+margin_bottom = 93.0
+custom_fonts/font = SubResource( 8 )
+text = "Player 1 Wins !"
+
+[node name="Player2Win" type="CenterContainer" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -240.0
+margin_right = 240.0
+margin_bottom = 93.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Player2Win"]
+margin_right = 545.0
+margin_bottom = 93.0
+custom_fonts/font = SubResource( 8 )
+text = "Player 2 Wins !"
+
+[node name="Equality" type="CenterContainer" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -240.0
+margin_right = 240.0
+margin_bottom = 93.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Equality"]
+margin_left = 77.0
+margin_right = 403.0
+margin_bottom = 93.0
+custom_fonts/font = SubResource( 8 )
+text = "It's a tie !"
+
+[connection signal="button_up" from="DoYouWantToPlayAgain/VBoxContainer/CenterContainer/HBoxContainer/Yes" to="." method="_on_Yes_button_up"]
+[connection signal="button_up" from="DoYouWantToPlayAgain/VBoxContainer/CenterContainer/HBoxContainer/No" to="." method="_on_No_button_up"]
