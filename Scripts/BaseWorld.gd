@@ -42,6 +42,7 @@ func _ready():
 	clearMovingDice(175)
 	shift_starting_positions(43.75 * 4)
 	dice_roll(175)
+	yield(get_tree().create_timer(2), "timeout")
 	clearMovingDice(175)
 
 func _process(delta):
