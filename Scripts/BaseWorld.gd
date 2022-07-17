@@ -36,10 +36,16 @@ func _ready():
 	player2.get_node("CollisionPolygon2D").scale.x = -1
 	player2.get_node("CollisionPolygon2D").position.x *= -1
 
-	#This is played once until gameloop is finished
+
+func _physics_process(delta):
+	if Input.is_action_just_pressed("debug_button"):
+		for dice in $DiceContainer.get_children():
+			if $DiceContainer.get_children().size() >= 3:
+				dice.queue_free()
 
 func _process(delta):
 	if done == true:
+		$DoYouWantToPlayAgain.hide()
 		player1.has_let_go = false
 		player2.has_let_go = false
 		player1.is_aim_locked = true
@@ -105,6 +111,7 @@ func randomise_dice_value():
 		animator.offset = Vector2(0, 7)
 
 func manage_player_turns():
+	yield(get_tree(), "idle_frame")
 	player1.is_aim_locked = false
 	if attacked == false and placing == false:
 		$MainText.show()
@@ -121,21 +128,42 @@ func manage_player_turns():
 			yield(next_round(), "completed")
 			set_process(true)
 
+func ask_new_game():
+	if player1.score > player2.score:
+		$Player1Win.show()
+		yield(get_tree().create_timer(1), "timeout")
+		$Player1Win.hide()
+	if player2.score > player1.score:
+		$Player2Win.show()
+		yield(get_tree().create_timer(1), "timeout")
+		$Player2Win.hide()
+	if player1.score == player2.score:
+		$Equality.show()
+		yield(get_tree().create_timer(1), "timeout")
+		$Equality.hide()
+	$DoYouWantToPlayAgain.show()
+
+
 func next_round():
-	print("test")
 	yield(get_tree(), "idle_frame")
 	yield(player_attack(), "completed")
 	yield(get_tree().create_timer(1), "timeout")
 	$MainText/Label.text = "Next Round"
 	yield(get_tree().create_timer(1), "timeout")
 	$MainText.hide()
-	for dice in $DiceContainer.get_children():
-		dice.queue_free()
-	for dice_position in $DicePositionContainer.get_children():
-		dice_position.position.y = 20
-	attacked = true
-	done = true
-	placing = true
+
+	if $DiceContainer.get_children().size() <= 0:
+		for dice_position in $DicePositionContainer.get_children():
+			dice_position.position.y = 20
+		yield(get_tree().create_timer(1), "timeout")
+		$MainText/Label.hide()
+		ask_new_game()
+	else:
+		player1.has_let_go = false
+		player2.has_let_go = false
+		player1.is_aim_locked = true
+		player2.is_aim_locked = true
+		yield(manage_player_turns(), "completed")
 
 func player_attack():
 	yield(get_tree(), "idle_frame")
@@ -149,3 +177,9 @@ func player_attack():
 	yield(player1.shoot_arrow(), "completed")
 	yield(player2.shoot_arrow(), "completed")
 
+func _on_Yes_button_up():
+	get_tree().change_scene("res://Scenes/World.tscn")
+
+
+func _on_No_button_up():
+	get_tree().change_scene("res://Scenes/StartMenu.tscn")

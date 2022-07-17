@@ -15,10 +15,10 @@ func _physics_process(delta):
 	for i in get_colliding_bodies():
 		if i.name == "Floor":
 			mode = RigidBody2D.MODE_STATIC
-		if i.name == "Player" and name != "P1Arrow":
+		if i.name == "Player" and not "P1Arrow" in name:
 			emit_signal("damaged_p1", 10)
 			mode = RigidBody2D.MODE_STATIC
-		if i.name == "Player2" and name != "P2Arrow":
+		if i.name == "Player2" and not "P2Arrow" in name:
 			emit_signal("damaged_p2", 10)
 			mode = RigidBody2D.MODE_STATIC
 		if "Dice" in i.name:
