@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://into_the_void/Into The Void Italic.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Scripts/BaseWorld.gd" type="Script" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://Assets/HpBarOver.png" type="Texture" id=5]
 [ext_resource path="res://Assets/HpBarUnder.png" type="Texture" id=6]
 [ext_resource path="res://Assets/goodbackground.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Audio/Fireball-Magic-Attack-A-www.fesliyanstudios.com.wav" type="AudioStream" id=8]
+[ext_resource path="res://Assets/pokerChips.png" type="Texture" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 1024, 120 )
@@ -105,6 +107,12 @@ font_data = ExtResource( 4 )
 5/shape_one_way_margin = 0.0
 5/shapes = [  ]
 5/z_index = 0
+
+[sub_resource type="DynamicFont" id=5]
+size = 17
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 4 )
 
 [node name="World" type="Node"]
 script = ExtResource( 2 )
@@ -218,3 +226,65 @@ position = Vector2( 1314, 20 )
 [node name="MovingDiceContainer" type="Node" parent="."]
 
 [node name="DiceContainer" type="Node" parent="."]
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="MagicSwoosh" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 8 )
+
+[node name="Player1Points" type="MarginContainer" parent="."]
+margin_top = 96.0
+margin_right = 40.0
+margin_bottom = 128.0
+rect_scale = Vector2( 4, 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Player1Points"]
+margin_right = 53.0
+margin_bottom = 32.0
+custom_constants/separation = -1
+
+[node name="TextureRect" type="TextureRect" parent="Player1Points/HBoxContainer"]
+margin_right = 32.0
+margin_bottom = 32.0
+texture = ExtResource( 9 )
+
+[node name="Label" type="Label" parent="Player1Points/HBoxContainer"]
+margin_left = 31.0
+margin_top = 3.0
+margin_right = 53.0
+margin_bottom = 28.0
+custom_fonts/font = SubResource( 5 )
+text = "67"
+
+[node name="Player2Points" type="MarginContainer" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -58.0
+margin_top = 96.0
+margin_bottom = 32.0
+rect_scale = Vector2( 4, 4 )
+rect_pivot_offset = Vector2( 59.482, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Player2Points"]
+margin_right = 58.0
+margin_bottom = 32.0
+custom_constants/separation = -3
+
+[node name="Label" type="Label" parent="Player2Points/HBoxContainer"]
+margin_top = 3.0
+margin_right = 22.0
+margin_bottom = 28.0
+custom_fonts/font = SubResource( 5 )
+text = "67"
+
+[node name="TextureRect" type="TextureRect" parent="Player2Points/HBoxContainer"]
+margin_left = 19.0
+margin_right = 51.0
+margin_bottom = 32.0
+texture = ExtResource( 9 )
